@@ -1,0 +1,247 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html,
+body,
+[class*="css"],
+.stMarkdown,
+.stText,
+.stHeader,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div,
+label {
+    font-family: 'Inter', sans-serif;
+    color: #1f2937 !important;
+    /* Force dark grey text */
+}
+
+/* Force light background and dark text to override Streamlit dark mode defaults */
+.stApp {
+    background-color: #f3f4f6;
+    color: #1f2937 !important;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #00529B 0%, #007cc3 100%);
+    padding: 3rem 2rem;
+    color: white;
+    border-radius: 0 0 24px 24px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 82, 155, 0.3);
+    text-align: center;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
+    color: white !important;
+}
+
+.main-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    color: #e0f2fe !important;
+}
+
+/* Flight Card */
+.flight-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.25rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease-in-out;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1.5fr;
+    /* Grid layout for alignment */
+    align-items: center;
+    gap: 1rem;
+}
+
+.flight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #00529B;
+}
+
+.flight-card-selected {
+    background-color: #eff6ff;
+    border: 2px solid #00529B;
+    box-shadow: 0 0 0 4px rgba(0, 82, 155, 0.1);
+}
+
+.fc-airline {
+    font-weight: 700;
+    color: #111827;
+    font-size: 1.1rem;
+}
+
+.fc-sub {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.fc-time {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.fc-duration {
+    font-size: 0.9rem;
+    color: #4b5563;
+    text-align: center;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.fc-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #00529B;
+    text-align: right;
+}
+
+/* Buttons */
+.stButton button {
+    background: linear-gradient(to right, #F7941D, #f59e0b);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 2.5rem;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(247, 148, 29, 0.3);
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.stButton button:hover {
+    background: linear-gradient(to right, #e68a1b, #d97706);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px rgba(247, 148, 29, 0.4);
+    color: white;
+}
+
+.secondary-button button {
+    background: white;
+    color: #00529B;
+    border: 2px solid #00529B;
+    box-shadow: none;
+}
+
+/* Steps Progress */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    color: #9ca3af;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.step.active {
+    color: #00529B;
+    font-weight: 700;
+    border-bottom: 2px solid #00529B;
+    padding-bottom: 4px;
+}
+
+.step.completed {
+    color: #10b981;
+}
+
+/* Seat Map */
+.seat-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Seat Button Styling Override */
+/* Target buttons inside the seat selection columns */
+div[data-testid="column"] button {
+    width: 100%;
+    min-height: 45px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.2s;
+}
+
+/* Available (Secondary) */
+div[data-testid="column"] button[kind="secondary"] {
+    background-color: white;
+    color: transparent;
+    /* Hide text if we use space, or show if we want */
+    border-color: #e5e7eb;
+}
+
+div[data-testid="column"] button[kind="secondary"]:hover {
+    border-color: #00529B;
+    background-color: #f0f9ff;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Selected (Primary) */
+div[data-testid="column"] button[kind="primary"] {
+    background-color: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+/* Occupied (Disabled) */
+div[data-testid="column"] button:disabled {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    color: white;
+    opacity: 1;
+    /* Override default opacity */
+    cursor: not-allowed;
+}
+
+/* Tooltip is handled by Streamlit's native help prop */
+
+/* Inputs */
+.stTextInput input,
+.stDateInput input,
+.stSelectbox select,
+.stNumberInput input {
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+}
+
+.stTextInput input:focus,
+.stDateInput input:focus,
+.stSelectbox select:focus {
+    border-color: #00529B;
+    box-shadow: 0 0 0 2px rgba(0, 82, 155, 0.2);
+}
