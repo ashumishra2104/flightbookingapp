@@ -185,44 +185,123 @@ label {
     margin-bottom: 12px;
 }
 
+/* --- REFINED OVERRIDES FOR INPUTS & DROPDOWNS --- */
+
+/* 1. Text Inputs (Enabled & Disabled) */
+div[data-baseweb="input"],
+div[data-baseweb="base-input"] {
+    background-color: #ffffff !important;
+    border-color: #d1d5db !important;
+}
+
+input.st-ae {
+    color: #1f2937 !important;
+    -webkit-text-fill-color: #1f2937 !important;
+    caret-color: #1f2937 !important;
+}
+
+/* Specific fix for Disabled Inputs (From/To) */
+input:disabled {
+    color: #1f2937 !important;
+    background-color: #f3f4f6 !important;
+    -webkit-text-fill-color: #1f2937 !important;
+    /* Critical for Safari/Chrome */
+    opacity: 1 !important;
+}
+
+/* 2. Selectbox / Dropdowns (The box itself) */
+div[data-baseweb="select"]>div {
+    background-color: #ffffff !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span {
+    color: #1f2937 !important;
+}
+
+div[data-baseweb="select"] svg {
+    fill: #1f2937 !important;
+}
+
+/* 3. Dropdown Menu (The list that opens up) - CRITICAL FIX */
+/* Target the popover container and all its children */
+div[data-baseweb="popover"] {
+    background-color: #ffffff !important;
+}
+
+div[data-baseweb="popover"]>div {
+    background-color: #ffffff !important;
+}
+
+ul[data-baseweb="menu"] {
+    background-color: #ffffff !important;
+}
+
+/* List items */
+li[data-baseweb="option"] {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+}
+
+/* Hover/Selected state */
+li[data-baseweb="option"]:hover,
+li[data-baseweb="option"][aria-selected="true"] {
+    background-color: #f0f9ff !important;
+    color: #00529B !important;
+}
+
+/* Force text color in options */
+li[data-baseweb="option"] * {
+    color: #1f2937 !important;
+}
+
+/* 4. Number Input */
+div[data-baseweb="input"] input {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+}
+
 /* Seat Button Styling Override */
 /* Target buttons inside the seat selection columns */
 div[data-testid="column"] button {
     width: 100%;
     min-height: 45px;
     border-radius: 8px;
-    border: 2px solid #e5e7eb;
+    border: 2px solid #e5e7eb !important;
     transition: all 0.2s;
+    font-weight: 600 !important;
 }
 
 /* Available (Secondary) */
 div[data-testid="column"] button[kind="secondary"] {
-    background-color: white;
-    color: transparent;
-    /* Hide text if we use space, or show if we want */
-    border-color: #e5e7eb;
+    background-color: #ffffff !important;
+    color: #4b5563 !important;
+    /* Show text (seat number) in dark grey */
+    border-color: #e5e7eb !important;
 }
 
 div[data-testid="column"] button[kind="secondary"]:hover {
-    border-color: #00529B;
-    background-color: #f0f9ff;
+    border-color: #00529B !important;
+    background-color: #f0f9ff !important;
+    color: #00529B !important;
     transform: scale(1.05);
     z-index: 10;
 }
 
 /* Selected (Primary) */
 div[data-testid="column"] button[kind="primary"] {
-    background-color: #10b981;
-    border-color: #10b981;
-    color: white;
+    background-color: #10b981 !important;
+    border-color: #10b981 !important;
+    color: white !important;
 }
 
 /* Occupied (Disabled) */
 div[data-testid="column"] button:disabled {
-    background-color: #ef4444;
-    border-color: #ef4444;
-    color: white;
-    opacity: 1;
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: white !important;
+    opacity: 1 !important;
     /* Override default opacity */
     cursor: not-allowed;
 }
@@ -232,7 +311,6 @@ div[data-testid="column"] button:disabled {
 /* Inputs */
 .stTextInput input,
 .stDateInput input,
-.stSelectbox select,
 .stNumberInput input {
     border-radius: 8px;
     border: 1px solid #d1d5db;

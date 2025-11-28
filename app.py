@@ -214,10 +214,17 @@ elif st.session_state.step == 2:
             st.rerun()
     with col_next:
         # Validation
-        if not st.session_state.booking_data.get('selected_outbound') or not st.session_state.booking_data.get('selected_return'):
+        outbound = st.session_state.booking_data.get('selected_outbound')
+        return_flight = st.session_state.booking_data.get('selected_return')
+        
+        if not outbound or not return_flight:
             st.warning("Please select both outbound and return flights.")
         else:
-            if st.button("Continue to Passengers ➔"):
+            # Debug info (Hidden in production, useful now)
+            # st.write(f"Selected Out: {outbound['id']}")
+            # st.write(f"Selected Ret: {return_flight['id']}")
+            
+            if st.button("Continue to Passengers ➔", type="primary"):
                 next_step()
                 st.rerun()
 
@@ -335,7 +342,12 @@ elif st.session_state.step == 4:
                 # `button:disabled` -> Red.
                 
                 with cols_ui[idx+1]:
-                    if cols_ui[idx+1].button(" " if not is_selected else "✓", 
+                    # Show seat ID on the button itself for visibility
+                    btn_label = seat_id 
+                    if is_selected:
+                        btn_label = f"{seat_id} ✓"
+                    
+                    if cols_ui[idx+1].button(btn_label, 
                                            key=f"{flight_type}_{seat_id}", 
                                            disabled=disabled, 
                                            type=btn_type,
@@ -467,6 +479,15 @@ elif st.session_state.step == 6:
             
             # PDF Download
             pdf_bytes = utils.generate_ticket_pdf(st.session_state.booking_data, pnr, fare_breakdown)
+            
+            # Save to Database
+            import db
+            # Initialize DB (safe to call multiple times, checks for table existence)
+            db.init_db()
+            saved = db.save_booking(st.session_state.booking_data, pnr, fare_breakdown)
+            if saved:
+                st.toast("Booking saved to database!", icon="💾")
+            
             st.download_button(
                 label="📄 Download Ticket PDF",
                 data=pdf_bytes,
@@ -483,3 +504,72 @@ elif st.session_state.step == 6:
     if st.button("⬅ Back"):
         prev_step()
         st.rerun()
+
+# --- AI CHAT WIDGET ---
+import streamlit.components.v1 as components
+
+# Inject n8n Chat Widget
+# We use components.html with a fixed height at the bottom.
+# Note: Floating widgets are tricky in Streamlit due to iframe isolation.
+# This will render a chat block at the bottom of the app.
+
+components.html("""
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: transparent;">
+    <div id="n8n-chat"></div>
+</div>
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://ashumishra123.app.n8n.cloud/webhook/b5693823-b4b6-48d9-9f10-bfaced55f059/chat',
+        target: '#n8n-chat',
+        mode: 'fullscreen',
+        showWelcomeScreen: true,
+        initialMessages: [
+            "Hi there! 👋",
+            "I'm your SkyConnect AI Assistant. How can I help you today?"
+        ],
+        i18n: {
+            en: {
+                title: 'SkyConnect Assistant',
+                subtitle: 'Ask me anything about your booking',
+                footer: '',
+                getStarted: 'New Conversation',
+                inputPlaceholder: 'Type your question...',
+            },
+        },
+        style: {
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            backgroundColor: '#ffffff',
+            token: {
+                color: {
+                    primary: '#00529B',
+                    secondary: '#f3f4f6',
+                    text: '#1f2937',
+                    textSecondary: '#6b7280',
+                    textOnPrimary: '#ffffff',
+                    background: '#ffffff',
+                },
+                borderRadius: {
+                    m: '12px',
+                    l: '16px',
+                },
+                fontFamily: 'Inter, sans-serif',
+            },
+        },
+	});
+</script>
+<style>
+  body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: transparent; }
+  #n8n-chat { 
+      width: 380px; 
+      height: 550px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+  }
+</style>
+""", height=600)
