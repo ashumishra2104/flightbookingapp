@@ -511,7 +511,9 @@ CREATE TABLE bookings (
 ## 📸 Screenshots
 
 ### 1. Search Page
-![Search Page](https://via.placeholder.com/800x450/00529B/FFFFFF?text=Flight+Search)
+
+<img width="3318" height="1874" alt="image" src="https://github.com/user-attachments/assets/1a5346d6-71c9-4c40-a51d-9928d8cbc8e5" />
+
 
 ### 2. Flight Selection
 ![Flight Selection](https://via.placeholder.com/800x450/4A90E2/FFFFFF?text=Select+Flights)
