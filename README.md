@@ -516,16 +516,27 @@ CREATE TABLE bookings (
 
 
 ### 2. Flight Selection
-![Flight Selection](https://via.placeholder.com/800x450/4A90E2/FFFFFF?text=Select+Flights)
+<img width="3386" height="1962" alt="image" src="https://github.com/user-attachments/assets/0e67dd40-90bb-443f-a96a-496dae7aa2a2" />
+
 
 ### 3. Seat Map
-![Seat Selection](https://via.placeholder.com/800x450/F7931E/FFFFFF?text=Seat+Map)
+<img width="3396" height="1932" alt="image" src="https://github.com/user-attachments/assets/2c255115-c180-4c3f-a0d9-4bb632fe3c02" />
+
 
 ### 4. AI Chatbot
-![Chatbot](https://via.placeholder.com/800x450/00529B/FFFFFF?text=AI+Assistant)
+
+<img width="1140" height="1260" alt="image" src="https://github.com/user-attachments/assets/ed5833d6-ec0e-49e6-a17c-047ae110dcd1" />
+
 
 ### 5. E-Ticket
-![E-Ticket](https://via.placeholder.com/800x450/4A90E2/FFFFFF?text=E-Ticket+PDF)
+<img width="3420" height="1882" alt="image" src="https://github.com/user-attachments/assets/9a8d7244-8475-4380-aa57-07d85f9a98f8" />
+
+
+
+## 6. Save the details to a database on real time
+
+<img width="3420" height="1882" alt="image" src="https://github.com/user-attachments/assets/47f8a04c-25bf-47e3-af96-c4cd71142e7f" />
+
 
 ## 🤝 Contributing
 
