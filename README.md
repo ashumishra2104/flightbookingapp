@@ -638,9 +638,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 - LinkedIn: [linkedin.com/in/ashumishra94](https://linkedin.com/in/ashumishra94)
 - GitHub: [@Ashumishra94](https://github.com/Ashumishra94)
 
-**Project Link**: [https://github.com/yourusername/skyconnect-flight-booking](https://github.com/yourusername/skyconnect-flight-booking)
-
-**Live Demo**: [https://flightbookingapp-dhui3wukei3vchj58ghyuo.streamlit.app/](https://flightbookingapp-dhui3wukei3vchj58ghyuo.streamlit.app/)
+**Project Link**: [https://flightbookingapp-dhui3wukei3vchj58ghyuo.streamlit.app/)
 
 ---
 
